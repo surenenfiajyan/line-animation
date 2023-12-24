@@ -13,8 +13,10 @@
 	<button id="restBtn">Reset</button>
 
 	<div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 30px);">
-		<canvas id="mainCanvas" width="1400" height="1400"
-			style="max-width: 90vw; max-height: 90vh; width: 90vh; aspect-ratio: 1;"></canvas>
+		<div id="canvasContainer" style="display: inline-flex; justify-content: center; align-items: center;">
+			<canvas id="mainCanvas" width="1400" height="1400"
+				style="clip-path: circle(50%); max-width: 90vw; max-height: 90vh; width: 90vh; aspect-ratio: 1;"></canvas>
+		</div>
 	</div>
 
 	<script>
@@ -44,14 +46,11 @@
 		document.getElementById('thickness').valueAsNumber = ctx.lineWidth = 1.8;
 		ctx.strokeStyle = 'green';
 		ctx.fillStyle = "black";
+		ctx.imageSmoothingEnabled = false
 		let sections = 180, stepFactor = 0.0002;
 
 		document.getElementById('lines').valueAsNumber = sections;
 		document.getElementById('speed').valueAsNumber = stepFactor;
-
-		ctx.beginPath();
-		ctx.arc(canvas.width * 0.5, canvas.width * 0.5, canvas.width * 0.5, 0, 2 * Math.PI);
-		ctx.clip();
 
 		function clear() {
 			ctx.clearRect(0, 0, canvas.width, canvas.width);
@@ -86,7 +85,7 @@
 		}
 
 		function fullScreen() {
-			canvas.requestFullscreen();
+			document.getElementById('canvasContainer').requestFullscreen();
 		}
 
 
