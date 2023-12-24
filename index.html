@@ -49,14 +49,12 @@
 		document.getElementById('lines').valueAsNumber = sections;
 		document.getElementById('speed').valueAsNumber = stepFactor;
 
-		clear();
 		ctx.beginPath();
 		ctx.arc(canvas.width * 0.5, canvas.width * 0.5, canvas.width * 0.5, 0, 2 * Math.PI);
 		ctx.clip();
 
 		function clear() {
-			ctx.rect(0, 0, canvas.width, canvas.width);
-			ctx.fill();
+			ctx.clearRect(0, 0, canvas.width, canvas.width);
 		}
 
 		function line(x1, y1, x2, y2) {
